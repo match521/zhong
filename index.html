@@ -980,7 +980,7 @@
                             <span>当前环境：${currentName.split(' ')[1] || currentName}</span>
                         </div>
                         <div class="env-item required">
-                            <span>${requiredName。split(' ')[0]}</span>
+                            <span>${requiredName.split(' ')[0]}</span>
                             <span>需要环境：${requiredName.split(' ')[1] || requiredName}</span>
                         </div>
                     </div>
@@ -994,7 +994,7 @@
         function getApiServer() {
             // 从URL参数中获取API服务器地址
             const urlParams = new URLSearchParams(window.location.search);
-            const apiServer = urlParams。get('api');
+            const apiServer = urlParams.get('api');
             
             // 如果有API参数，使用它；否则尝试相对路径（仅适用于PHP服务器）
             return apiServer || null;
@@ -1014,15 +1014,15 @@
                 fetch(`${apiServer}/stats.php?action=log`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON。stringify({
+                    body: JSON.stringify({
                         url: targetUrl,
-                        ua: navigator.userAgent，
-                        ref: document。referrer,
+                        ua: navigator.userAgent,
+                        ref: document.referrer,
                         success: success ? 1 : 0,
                         time: Date.now()
                     }),
                     keepalive: true
-                })。catch(() => {
+                }).catch(() => {
                     // 静默失败，不影响跳转
                 });
             } catch(e) {
@@ -1031,7 +1031,7 @@
         }
         
         // ==================== 域名健康上报 ====================
-        function reportDomainHealth(domain， success, responseTime) {
+        function reportDomainHealth(domain, success, responseTime) {
             try {
                 const apiServer = getApiServer();
                 if (!apiServer) {
@@ -1046,7 +1046,7 @@
                         domain: domain,
                         success: success ? 1 : 0,
                         response_time: responseTime
-                    })，
+                    }),
                     keepalive: true
                 }).catch(() => {});
             } catch(e) {
